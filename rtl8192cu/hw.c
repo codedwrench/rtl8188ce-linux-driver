@@ -592,7 +592,7 @@ static void _rtl92cu_init_chipn_one_out_ep_priority( struct ieee80211_hw *hw,
 						    bool wmm_enable,
 						    u8 queue_sel )
 {
-	u16 uninitialized_var( value );
+	u16 value;
 
 	switch ( queue_sel ) {
 	case TX_SELE_HQ:
@@ -618,8 +618,8 @@ static void _rtl92cu_init_chipn_two_out_ep_priority( struct ieee80211_hw *hw,
 						     u8 queue_sel )
 {
 	u16 beq, bkq, viq, voq, mgtq, hiq;
-	u16 uninitialized_var( valuehi );
-	u16 uninitialized_var( valuelow );
+	u16 valuehi;
+	u16 valuelow;
 
 	switch ( queue_sel ) {
 	case ( TX_SELE_HQ | TX_SELE_LQ ):
