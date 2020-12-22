@@ -868,6 +868,7 @@ static void rtl_op_configure_filter( struct ieee80211_hw *hw,
 	}
 	
 	mac->rx_conf |= rtlpriv->cfg->maps[MAC_RCR_AAP];
+	mac->rx_conf |= rtlpriv->cfg->maps[MAC_RCR_AM];
 
 	if ( changed_flags & FIF_OTHER_BSS ) {
 		if ( *new_flags & FIF_OTHER_BSS ) {
