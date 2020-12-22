@@ -801,6 +801,7 @@ static void rtl_op_configure_filter( struct ieee80211_hw *hw,
 	struct rtl_mac *mac = rtl_mac( rtl_priv( hw ) );
 
 	*new_flags &= RTL_SUPPORTED_FILTERS;
+
 	if ( 0 == changed_flags )
 		return;
 
@@ -865,6 +866,8 @@ static void rtl_op_configure_filter( struct ieee80211_hw *hw,
 		if ( !update_rcr )
 			update_rcr = true;
 	}
+	
+	mac->rx_conf |= rtlpriv->cfg->maps[MAC_RCR_AAP];
 
 	if ( changed_flags & FIF_OTHER_BSS ) {
 		if ( *new_flags & FIF_OTHER_BSS ) {
