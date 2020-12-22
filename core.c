@@ -867,9 +867,10 @@ static void rtl_op_configure_filter( struct ieee80211_hw *hw,
 			update_rcr = true;
 	}
 
-	if ( changed_flags & FIF_OTHER_BSS ) {
-		if ( *new_flags & FIF_OTHER_BSS ) {
+	if ( changed_flags & FIF_ALLMULTI ) {
+		if ( *new_flags & FIF_ALLMULTI ) {
 			mac->rx_conf |= rtlpriv->cfg->maps[MAC_RCR_AAP];
+            printk("Enable accept all packets! PSP Xlink mode engaged!\n");
 			RT_TRACE( rtlpriv, COMP_MAC80211, DBG_LOUD,
 				 "Enable receive other BSS's frame.\n" );
 		} else {
@@ -880,10 +881,6 @@ static void rtl_op_configure_filter( struct ieee80211_hw *hw,
 		if ( !update_rcr )
 			update_rcr = true;
 	}
-
-    printk("Enable accept all packets! PSP Xlink mode engaged!\n");
-	mac->rx_conf |= rtlpriv->cfg->maps[MAC_RCR_AAP];
-	mac->rx_conf |= rtlpriv->cfg->maps[MAC_RCR_AM];
 
 	if ( update_rcr )
 		rtlpriv->cfg->ops->set_hw_reg( hw, HW_VAR_RCR,
